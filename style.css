@@ -974,6 +974,7 @@ body.dark-mode .landing-floating-socials .socials-line {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   border-radius: 10px;
   border: 1px solid var(--border-cream);
   transition: transform 0.5s ease;
