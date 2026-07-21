@@ -4409,3 +4409,99 @@ body.dark-mode .terminal-toggle-btn::before {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* ==========================================================================
+   FLOATING MUSIC PLAYER WIDGET
+   ========================================================================== */
+.music-toggle-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 95px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(42, 30, 23, 0.9);
+  border: 1.5px solid var(--accent-gold);
+  color: var(--accent-gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 9989;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+body.dark-mode .music-toggle-btn {
+  background: rgba(18, 11, 8, 0.9);
+  border-color: var(--accent-gold-light);
+  color: var(--accent-gold-light);
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow:
+    0 15px 35px rgba(179, 133, 92, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background-color: var(--brown-dark);
+}
+
+.music-toggle-btn.playing {
+  border-color: #27c93f;
+  color: #27c93f;
+  box-shadow: 0 0 20px rgba(39, 201, 63, 0.35);
+}
+
+/* Sound Wave Bars Animation */
+.music-wave-bars {
+  position: absolute;
+  bottom: 8px;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.music-toggle-btn.playing .music-wave-bars {
+  opacity: 1;
+}
+
+.music-wave-bars .bar {
+  width: 2px;
+  background-color: currentColor;
+  border-radius: 2px;
+}
+
+.music-toggle-btn.playing .bar1 {
+  animation: musicWave 0.8s ease-in-out infinite alternate;
+}
+
+.music-toggle-btn.playing .bar2 {
+  animation: musicWave 0.6s ease-in-out 0.2s infinite alternate;
+}
+
+.music-toggle-btn.playing .bar3 {
+  animation: musicWave 0.9s ease-in-out 0.4s infinite alternate;
+}
+
+@keyframes musicWave {
+  0% { height: 2px; }
+  100% { height: 8px; }
+}
+
+@media (max-width: 600px) {
+  .music-toggle-btn {
+    bottom: 25px;
+    right: 85px;
+    width: 48px;
+    height: 48px;
+  }
+}
+

@@ -1001,3 +1001,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ==========================================================================
+   BACKGROUND MUSIC PLAYER WIDGET
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const musicToggleBtn = document.getElementById('musicToggleBtn');
+  const bgAudioPlayer = document.getElementById('bgAudioPlayer');
+
+  if (musicToggleBtn && bgAudioPlayer) {
+    const playIcon = musicToggleBtn.querySelector('.music-icon-play');
+    const pauseIcon = musicToggleBtn.querySelector('.music-icon-pause');
+
+    musicToggleBtn.addEventListener('click', () => {
+      if (bgAudioPlayer.paused) {
+        bgAudioPlayer.play().then(() => {
+          musicToggleBtn.classList.add('playing');
+          musicToggleBtn.setAttribute('title', 'Pause Music');
+          if (playIcon) playIcon.style.display = 'none';
+          if (pauseIcon) pauseIcon.style.display = 'block';
+        }).catch(err => {
+          console.error("Audio playback error:", err);
+        });
+      } else {
+        bgAudioPlayer.pause();
+        musicToggleBtn.classList.remove('playing');
+        musicToggleBtn.setAttribute('title', 'Play Music');
+        if (playIcon) playIcon.style.display = 'block';
+        if (pauseIcon) pauseIcon.style.display = 'none';
+      }
+    });
+
+    bgAudioPlayer.addEventListener('ended', () => {
+      musicToggleBtn.classList.remove('playing');
+      musicToggleBtn.setAttribute('title', 'Play Music');
+      if (playIcon) playIcon.style.display = 'block';
+      if (pauseIcon) pauseIcon.style.display = 'none';
+    });
+  }
+});
+
