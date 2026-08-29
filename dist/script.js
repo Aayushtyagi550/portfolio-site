@@ -208,9 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (img && imagesStr) {
       const images = imagesStr.split(',');
       
-      const cycleImage = () => {
-        let currentIdx = parseInt(container.getAttribute('data-current') || '0', 10);
-        currentIdx = (currentIdx + 1) % images.length;
+      const goToImage = (newIdx) => {
+        let currentIdx = (newIdx + images.length) % images.length;
         container.setAttribute('data-current', currentIdx);
         
         img.style.opacity = '0';
@@ -228,12 +227,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
 
+      const cycleImage = () => {
+        let currentIdx = parseInt(container.getAttribute('data-current') || '0', 10);
+        goToImage(currentIdx + 1);
+      };
+
       // Set up autoplay interval (3.5 seconds)
       let autoPlayInterval = setInterval(cycleImage, 3500);
 
       // Manual click override
-      container.addEventListener('click', () => {
-        cycleImage();
+      container.addEventListener('click', (e) => {
+        const clickedDot = e.target.closest('.dot');
+        if (clickedDot) {
+          e.stopPropagation();
+          const dotIdx = Array.from(dots).indexOf(clickedDot);
+          if (dotIdx !== -1) {
+            goToImage(dotIdx);
+          }
+        } else {
+          cycleImage();
+        }
       });
 
       // Pause autoplay on mouse enter
@@ -836,15 +849,25 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'projects':
         case 'p':
           printLine('Featured Projects:', 'success-msg');
-          printLine('1. <span style="font-weight: bold; color: #fff;">SymptoGenie (AI Healthcare Assistant)</span>');
+          printLine('1. <span style="font-weight: bold; color: #fff;">HiveMind (Autonomous Multi-Agent AI Platform)</span>');
+          printLine('   - LangGraph autonomous state machine, 5-microservice distributed architecture, Qdrant vector RAG & Razorpay billing.');
+          printLine('   - GitHub: <a href="https://github.com/Aayushtyagi550/HiveMind-MultiAI-Agent-Platform" target="_blank" rel="noopener noreferrer">HiveMind Repo</a>');
+          printLine('   - Live: <a href="https://hive-mind-multi-ai-agent-platform.vercel.app/" target="_blank" rel="noopener noreferrer">HiveMind Demo</a>');
+          printLine('');
+          printLine('2. <span style="font-weight: bold; color: #fff;">SymptoGenie (AI Healthcare Assistant)</span>');
           printLine('   - OCR/NLP clinical report processing & ailment triage scoring.');
           printLine('   - GitHub: <a href="https://github.com/Aayushtyagi550/SymptoGenie---AI-Health-App.git" target="_blank" rel="noopener noreferrer">SymptoGenie Repo</a>');
           printLine('   - Live: <a href="https://symptogenie-a-health-monitoring-platform.onrender.com/dashboard" target="_blank" rel="noopener noreferrer">SymptoGenie Demo</a>');
           printLine('');
-          printLine('2. <span style="font-weight: bold; color: #fff;">MelodyVerse (AI-Powered Music Streaming)</span>');
+          printLine('3. <span style="font-weight: bold; color: #fff;">MelodyVerse (AI-Powered Music Streaming)</span>');
           printLine('   - Voice search via Gemini 2.5 Flash & Emotion playlist mapping.');
           printLine('   - GitHub: <a href="https://github.com/Aayushtyagi550/MelodyVerse---Web-Music-Player.git" target="_blank" rel="noopener noreferrer">MelodyVerse Repo</a>');
           printLine('   - Live: <a href="https://melodyverse-web-music-player.onrender.com/" target="_blank" rel="noopener noreferrer">MelodyVerse Demo</a>');
+          printLine('');
+          printLine('4. <span style="font-weight: bold; color: #fff;">TaskFlow (Task Management App)</span>');
+          printLine('   - Real-time task tracking with categorization & LocalStorage persistence.');
+          printLine('   - GitHub: <a href="https://github.com/Aayushtyagi550/my-task-manager" target="_blank" rel="noopener noreferrer">TaskFlow Repo</a>');
+          printLine('   - Live: <a href="https://my-task-manager-taupe.vercel.app/" target="_blank" rel="noopener noreferrer">TaskFlow Demo</a>');
           break;
 
         case 'education':

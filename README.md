@@ -84,10 +84,12 @@ A premium, highly interactive personal portfolio website designed for **Aayush T
 * Bullet points animate in sequentially with typewriter spacing, cap icons toss on hover, and an SVG border trace draws itself when hovered.
 
 ### 5. Projects
-* Showcases two full-stack web applications:
-  - **SymptoGenie**: AI-integrated symptom analyzer and report generator.
-  - **MelodyVerse**: Full-stack music community platform.
-* Project screenshots cycle automatically every 3.5 seconds inside high-fidelity browser mockup frames.
+* Showcases featured web applications and autonomous AI systems:
+  - **HiveMind**: Autonomous multi-agent AI platform built with LangGraph, 5-microservice distributed backend, Qdrant vector RAG, Upstash Redis caching, and Razorpay billing.
+  - **SymptoGenie**: AI-integrated symptom analyzer and OCR/NLP medical report generator.
+  - **MelodyVerse**: Full-stack music community platform with Gemini voice and facial emotion detection.
+  - **TaskFlow**: Interactive productivity and task management web application.
+* Project screenshots cycle automatically every 3.5 seconds inside high-fidelity browser mockup frames with clickable gallery indicators.
 
 ### 6. Skills
 * Skill categories (Languages, Frontend, Backend, Databases, Core CS, Tools) arranged in a 3-column grid.
